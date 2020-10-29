@@ -3,6 +3,7 @@ import { FiClock, FiInfo } from "react-icons/fi";
 import { Map, Marker, TileLayer } from "react-leaflet";
 import { useParams } from 'react-router-dom';
 
+import Sidebar from "../components/Sidebar";
 import mapIcon from "../utils/mapIcon";
 import '../styles/pages/orphanage.css';
 import api from "../services/api";
@@ -34,7 +35,6 @@ export default function Orphanage() {
   useEffect(() => {
     api.get(`orphanages/${params.id}`).then(response => {
       setOrphanage(response.data);
-      console.log(response.data);
     })
   }, [params.id]);
   
@@ -44,6 +44,8 @@ export default function Orphanage() {
   
   return (
     <div id="page-orphanage">
+      <Sidebar/>
+
       <main>
         <div className="orphanage-details">
           <img src={orphanage.images[activeImageIndex]?.url} alt={orphanage.name} />
